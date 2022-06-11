@@ -6,8 +6,7 @@ import Link from "next/link"
 
 import styles from '../../styles/Home.module.css'
 import { getAllArticles } from '/lib/mdx'
-
-const dayjs = require('dayjs')
+import dayjs from 'dayjs'
 
 export default function BlogPage({ posts }) {
   return (
