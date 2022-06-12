@@ -17,7 +17,7 @@ export default function Blog({ post: { source, frontmatter } }) {
   return (
     <React.Fragment>
       <Head>
-        <title>{frontmatter.title} | My blog</title>
+        <title>{frontmatter.title} | Daniel Santarriaga - Blog</title>
       </Head>
       <div className="article-container">
         <h1 className="article-title">{frontmatter.title}</h1>
