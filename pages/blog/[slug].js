@@ -11,6 +11,9 @@ import { serialize } from 'next-mdx-remote/serialize'
 import 'highlight.js/styles/atom-one-dark-reasonable.css'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { getSlug, getArticleFromSlug } from '../../lib/mdx'
+import "highlight.js/styles/atom-one-dark.css";
+
+
 //import { SectionTitle, Text } from '../../data/components/mdx-components'
 
 export default function Blog({ post: { source, frontmatter } }) {
@@ -49,7 +52,6 @@ export async function getStaticProps({ params }) {
           },
           { behaviour: 'wrap' },
         ],
-        rehypeHighlight,
         rehypeCodeTitles,
       ],
     },
