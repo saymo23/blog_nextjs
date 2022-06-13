@@ -5,13 +5,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import rehypeSlug from 'rehype-slug'
 import { MDXRemote } from 'next-mdx-remote'
-import rehypeHighlight from 'rehype-highlight'
+
+import { remarkCodeHike } from "@code-hike/mdx"
+import "@code-hike/mdx/dist/index.css"
+import theme from "shiki/themes/monokai.json"
+import { CH } from "@code-hike/mdx/components"
+
 import rehypeCodeTitles from 'rehype-code-titles'
 import { serialize } from 'next-mdx-remote/serialize'
 import 'highlight.js/styles/atom-one-dark-reasonable.css'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { getSlug, getArticleFromSlug } from '../../lib/mdx'
-import "highlight.js/styles/atom-one-dark.css";
 
 
 //import { SectionTitle, Text } from '../../data/components/mdx-components'
@@ -29,7 +33,7 @@ export default function Blog({ post: { source, frontmatter } }) {
           {frontmatter.readingTime}
         </p>
         <div className="content">
-          <MDXRemote {...source} components={{ Image  }} />
+          <MDXRemote {...source} components={{ Image, CH }} />
         </div>
       </div>
     </React.Fragment>
@@ -43,6 +47,8 @@ export async function getStaticProps({ params }) {
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
+      remarkPlugins: [[remarkCodeHike, { autoImport: false, theme }]],
+      useDynamicImport: true,
       rehypePlugins: [
         rehypeSlug,
         [
