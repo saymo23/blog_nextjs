@@ -1,0 +1,83 @@
+---
+title: Colibrí
+slug: colibri
+author: Daniel Santarriaga
+publishedAt: '2022-01-13T19:00:00'
+tags: ["post"]
+image: /img/blog/colibri/colibri.jpg
+imageAlt: Huitzil
+excerpt: Colibrí. Su representación en la cultura azteca es magica y representa al corazón humano. Explicare como hice el colibrí que cambia de colores.
+---
+
+"*Huitzilin: Espina preciosa*", en el idioma Nahuatl. Me gustan muchísimo los colibrí y representa la valentía y al corazón. Todo empezó con la canción [Huitzil](https://www.youtube.com/watch?v=rQSGqbsBrso) del álbum Moctezuma de Porter, todo su álbum es una joya, pero esta canción es mi favorita.
+
+Así que me puse a conseguir un logo de colibrí para mi blog. Y me encontré este:
+
+<Image
+  src="/img/blog/colibri/colibri.jpg"
+  width="500"
+  height="500"
+  alt='ddd'
+ />
+
+En tangram y en SVG y se me ocurrió hacer algo interesante. Le cambiaremos los colores al azar cada vez que recargue la página.
+
+Nota importante: Me duele mucho confesar que cuando tome este SVG tan bonito, por alguna razón no guarde el enlace y no encuentro la página donde lo saque para darle el crédito. Espero encontrarlo el credito a quien lo merece.
+
+# Cambiando los colores
+
+Los colibrís tienen diferentes colores según la especie, por lo que se me ocurrió hacer el logo cambiante cada vez que se recargue la página. Entonces desarrolle el siguiente pequeño código. Mi blog esta implementado con [11ty](https://www.11ty.dev/). Estoy organizando un artículo sobre 11ty ya que me está gustando mucho.
+
+Este es el SVG:
+
+```html index.html
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" id='colibri' viewBox="0 0 8000 8000" preserveAspectRatio="xMidYMid meet">
+  <g class="layer_c" fill="#22ab24" stroke="none">
+  <path d="M2410 3885 l0 -625 625 0 625 0 0 625 0 625 -625 0 -625 0 0 -625z"/>
+  </g>
+  <g class="layer_c" fill="#cd0e66" stroke="none">
+  <path d="M3680 4514 l0 -1252 743 -6 c408 -4 973 -6 1255 -4 l512 3 -1255 1255 -1255 1255 0 -1251z"/>
+  </g>
+  <g class="layer_c" fill="#18aa93" stroke="none">
+  <path d="M3038 5143 l-618 -618 617 3 c340 2 619 5 620 6 2 2 2 278 1 614 l-3 612 -617 -617z"/>
+  </g>
+  <g class="layer_c" fill="#6f27cc" stroke="none">
+  <path d="M4302 6407 l-622 -622 625 -625 625 -625 0 1248 c0 686 -1 1247 -3 1247 -1 0 -282 -280 -625 -623z"/>
+  </g>
+  <g class="layer_c" fill="#0f82f2" stroke="none">
+  <path d="M1733 2353 l887 -888 887 888 888 887 -1775 0 -1775 0 888 -887z"/>
+  </g>
+  <g class="layer_c" fill="#fd8c00" stroke="none">
+  <path d="M4865 2800 l440 -440 890 0 890 0 -440 440 -440 440 -890 0 -890 0 440 -440z"/>
+  </g>
+</svg>
+```
+
+Y este es el código js
+
+``` js
+//Obtenermos el arreglo de los elementos de cada pieza del tangram
+const c_layers = document.getElementsByClassName('layer_c')
+//Creamos una libreria de los colores que deseamos usar
+const colors = [
+  '#61946D', '#D0E562', '#B6D369', '#C2E812', '#91F5AD', '#59A96A',
+  '#06BCC1', '#12263A', '#65AFFF',
+  '#22ab24', '#cd0e66', '#18aa93', '#6f27cc', '#0f82f2', '#fd8c00'
+]
+//Le damos a cada pieza del tangram un color aleatorio
+for(let layer of c_layers){
+  const random = Math.floor(Math.random() * colors.length);
+  layer.style.fill = colors[random]
+}
+```
+
+El resultado es el que cada vez que se recarga el sitio se obtiene un colibrí con colores diferentes y hay algunos que se ven muuy bonitos. Te puedes crear un NFT en cada recarga, anda inténtalo, son gratis y te los puedes llevar a casa jaja.
+
+<div style={{width: '640px', height: '480px', position: 'relative'}}>
+  <Image
+    src="/img/blog/colibri/colibrisNFT.jpg"
+    layout='fill'
+    objectFit='contain'
+    alt='ColibriNFT: llevate uno gratis'
+  />
+</div>

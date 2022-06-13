@@ -12,7 +12,7 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
         <meta name="description" content="Daniel Santarriaga - Portafolio" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <main className={styles.main}>

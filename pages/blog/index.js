@@ -13,13 +13,16 @@ export default function BlogPage({ posts }) {
     <React.Fragment>
       <Head>
         <title>My Blog</title>
+        <link rel="icon" href="/favicon.png" />
       </Head>
-      <div>
+      <div className='w-8/12 mx-auto'>
         {posts.map((frontMatter) => {
           return (
-            <Link href={`/blog/${frontMatter.slug}`} passHref key={frontMatter.title}>
-              <div>
-                <h1 className="title">{frontMatter.title}</h1>
+            <Link href={`/blog/${frontMatter.slug}`} passHref key={frontMatter.title}
+              
+            >
+              <div className='p-4 shadow-lg mb-4 cursor-pointer'>
+                <h1 className="title text-xl">{frontMatter.title}</h1>
                 <p className="summary">{frontMatter.excerpt}</p>
                 <p className="date">
                   {dayjs(frontMatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}

@@ -25,6 +25,8 @@ export default function Blog({ post: { source, frontmatter } }) {
     <React.Fragment>
       <Head>
         <title>{frontmatter.title} | Daniel Santarriaga - Blog</title>
+        <meta name='description' content={frontmatter.excerpt}></meta>
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <div className="article-container">
         <h1 className="article-title">{frontmatter.title}</h1>
