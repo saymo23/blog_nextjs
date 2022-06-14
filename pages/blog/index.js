@@ -6,7 +6,10 @@ import Link from "next/link"
 
 import styles from '../../styles/Home.module.css'
 import { getAllArticles } from '/lib/mdx'
-import dayjs from 'dayjs'
+
+import SidebarBlog from '../../components/SidebarBlog'
+
+const optionDate = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
 export default function BlogPage({ posts }) {
   return (
@@ -15,23 +18,42 @@ export default function BlogPage({ posts }) {
         <title>My Blog</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <div className='w-8/12 mx-auto'>
-        {posts.map((frontMatter) => {
-          return (
-            <Link href={`/blog/${frontMatter.slug}`} passHref key={frontMatter.title}
-              
-            >
-              <div className='p-4 shadow-lg mb-4 cursor-pointer'>
-                <h1 className="title text-xl">{frontMatter.title}</h1>
-                <p className="summary">{frontMatter.excerpt}</p>
-                <p className="date">
-                  {dayjs(frontMatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}
-                  {frontMatter.readingTime}
-                </p>
-              </div>
-            </Link>
-          )
-        })}
+      <div className='container w-8/12 mx-auto flex justify-center'>
+        <div className='w-3/12'>
+          <SidebarBlog />
+        </div>
+        <div className='w-9/12'>
+          <h1 className='text-4xl text-center'>
+            My Blog
+          </h1>
+          <div className='text-2xl text-center'>
+            Last Post
+          </div>
+          {posts.map((frontMatter) => {
+            return (
+              <Link href={`/blog/${frontMatter.slug}`} passHref key={frontMatter.title} >
+                <div className='p-4 shadow-lg mb-4 cursor-pointer '>
+                  
+                  <div className="flex ">
+                    <div className='img_list_blog w-1/3'>
+                      <img src={frontMatter.image} alt={frontMatter.imageAlt} />
+                    </div>
+                    <div className="w-2/3 ml-4">
+                      <h2 className="title text-2xl">{frontMatter.title}</h2>
+                      <p className="date">
+                        {new Date(frontMatter.publishedAt).toLocaleDateString('es-MX', optionDate)} &mdash;{' '}
+                        {frontMatter.readingTime}
+                      </p>
+                      <p className="summary">{frontMatter.excerpt}</p>
+                      
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+        
       </div>
     </React.Fragment>
   )
@@ -39,15 +61,17 @@ export default function BlogPage({ posts }) {
 
 export async function getStaticProps() {
   const articles = await getAllArticles()
+  
+  articles.sort((a,b) => {
+    const aDate = Date.parse(a.publishedAt)
+    const bDate = Date.parse(b.publishedAt)
 
-  articles
-    .map((article) => article.data)
-    .sort((a, b) => {
-      if (a.data.publishedAt > b.data.publishedAt) return 1
-      if (a.data.publishedAt < b.data.publishedAt) return -1
+    if (aDate > bDate) return 1
+    if (aDate < bDate) return -1
 
-      return 0
-    })
+    return 0
+  })
+  
 
   return {
     props: {

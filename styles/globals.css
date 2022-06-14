@@ -18,3 +18,14 @@ a {
 * {
   box-sizing: border-box;
 }
+.img_list_blog{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img_list_blog img{
+  object-fit: contain;
+  object-position: center;
+  height: 230px;
+}
+
