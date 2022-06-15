@@ -4,7 +4,7 @@ export class SidebarBlog extends Component {
   render() {
     return (
       <div>
-        s
+        Sidebar
       </div>
     )
   }

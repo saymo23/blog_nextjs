@@ -8,6 +8,8 @@ import styles from '../../styles/Home.module.css'
 import { getAllArticles } from '/lib/mdx'
 
 import SidebarBlog from '../../components/SidebarBlog'
+import Header from '../../components/Header'
+import Colibri from '../../components/Colibri'
 
 const optionDate = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
@@ -18,7 +20,11 @@ export default function BlogPage({ posts }) {
         <title>My Blog</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <div className='container w-8/12 mx-auto flex justify-center'>
+      <div className='container  mx-auto flex justify-center flex-wrap'>
+        <div className="top w-full flex">
+          <Colibri />
+          <Header/>
+        </div>
         <div className='w-3/12'>
           <SidebarBlog />
         </div>
@@ -35,10 +41,10 @@ export default function BlogPage({ posts }) {
                 <div className='p-4 shadow-lg mb-4 cursor-pointer '>
                   
                   <div className="flex ">
-                    <div className='img_list_blog w-1/3'>
+                    <div className='img_list_blog w-5/12'>
                       <img src={frontMatter.image} alt={frontMatter.imageAlt} />
                     </div>
-                    <div className="w-2/3 ml-4">
+                    <div className="w-7/12 ml-4">
                       <h2 className="title text-2xl">{frontMatter.title}</h2>
                       <p className="date">
                         {new Date(frontMatter.publishedAt).toLocaleDateString('es-MX', optionDate)} &mdash;{' '}
