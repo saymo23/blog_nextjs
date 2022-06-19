@@ -25,39 +25,41 @@ export default function BlogPage({ posts }) {
           <Colibri />
           <Header/>
         </div>
-        <div className='w-3/12'>
-          <SidebarBlog />
-        </div>
-        <div className='w-9/12'>
-          <h1 className='text-4xl text-center'>
-            My Blog
-          </h1>
-          <div className='text-2xl text-center'>
-            Last Post
-          </div>
-          {posts.map((frontMatter) => {
-            return (
-              <Link href={`/blog/${frontMatter.slug}`} passHref key={frontMatter.title} >
-                <div className='p-4 shadow-lg mb-4 cursor-pointer '>
-                  
-                  <div className="flex ">
-                    <div className='img_list_blog w-5/12'>
-                      <img src={frontMatter.image} alt={frontMatter.imageAlt} />
-                    </div>
-                    <div className="w-7/12 ml-4">
-                      <h2 className="title text-2xl">{frontMatter.title}</h2>
-                      <p className="date">
-                        {new Date(frontMatter.publishedAt).toLocaleDateString('es-MX', optionDate)} &mdash;{' '}
-                        {frontMatter.readingTime}
-                      </p>
-                      <p className="summary">{frontMatter.excerpt}</p>
-                      
+        <div className="flex gap-4">
+          <div className='w-full lg:w-9/12 '>
+            <h1 className='text-4xl text-center'>
+              My Blog
+            </h1>
+            <div className='text-2xl text-center'>
+              Last Post
+            </div>
+            {posts.map((frontMatter) => {
+              return (
+                <Link href={`/blog/${frontMatter.slug}`} passHref key={frontMatter.title} >
+                  <div className='p-4 shadow-lg mb-4 cursor-pointer '>
+                    
+                    <div className="flex ">
+                      <div className='img_list_blog w-5/12'>
+                        <img src={frontMatter.image} alt={frontMatter.imageAlt} />
+                      </div>
+                      <div className="w-7/12 ml-4">
+                        <h2 className="title text-2xl">{frontMatter.title}</h2>
+                        <p className="date">
+                          {new Date(frontMatter.publishedAt).toLocaleDateString('es-MX', optionDate)} &mdash;{' '}
+                          {frontMatter.readingTime}
+                        </p>
+                        <p className="summary">{frontMatter.excerpt}</p>
+                        
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            )
-          })}
+                </Link>
+              )
+            })}
+          </div>
+          <div className='w-3/12 hidden lg:flex'>
+            <SidebarBlog />
+          </div>
         </div>
         
       </div>
