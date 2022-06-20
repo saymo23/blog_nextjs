@@ -16,6 +16,9 @@ import { serialize } from 'next-mdx-remote/serialize'
 import 'highlight.js/styles/atom-one-dark-reasonable.css'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { getSlug, getArticleFromSlug } from '../../lib/mdx'
+import Colibri from '../../components/Colibri'
+import Header from '../../components/Header'
+import SidebarBlog from '../../components/SidebarBlog'
 
 
 //import { SectionTitle, Text } from '../../data/components/mdx-components'
@@ -28,14 +31,25 @@ export default function Blog({ post: { source, frontmatter } }) {
         <meta name='description' content={frontmatter.excerpt}></meta>
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <div className="article-container">
-        <h1 className="article-title">{frontmatter.title}</h1>
-        <p className="publish-date">
-          {dayjs(frontmatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}
-          {frontmatter.readingTime}
-        </p>
-        <div className="content">
-          <MDXRemote {...source} components={{ Image, CH }} />
+      <div className='container mx-auto flex justify-center flex-wrap'>
+        <div className="top w-full flex">
+          <Colibri />
+          <Header />
+        </div>
+        <div className="flex gap-4">
+          <div className='w-full lg:w-9/12 '>
+            <h1 className="article-title text-3xl">{frontmatter.title}</h1>
+            <p className="publish-date mb-6">
+              {dayjs(frontmatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}
+              {frontmatter.readingTime}
+            </p>
+            <div className="content">
+              <MDXRemote {...source} components={{ Image, CH }} />
+            </div>
+          </div>
+          <div className='w-3/12 hidden lg:flex'>
+            <SidebarBlog />
+          </div>
         </div>
       </div>
     </React.Fragment>

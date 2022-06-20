@@ -43,3 +43,7 @@ header > nav > li{
 .description p{
   @apply mb-4;
 }
+
+body code.ch-code-scroll-parent{
+  width: 100% !important;
+}

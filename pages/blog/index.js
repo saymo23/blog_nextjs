@@ -19,8 +19,9 @@ export default function BlogPage({ posts }) {
       <Head>
         <title>My Blog</title>
         <link rel="icon" href="/favicon.png" />
+        <meta name='description' content='Mi blog sobre desarrollo web y mis hobbies.'></meta>
       </Head>
-      <div className='container  mx-auto flex justify-center flex-wrap'>
+      <div className='container mx-auto flex justify-center flex-wrap'>
         <div className="top w-full flex">
           <Colibri />
           <Header/>
@@ -30,9 +31,6 @@ export default function BlogPage({ posts }) {
             <h1 className='text-4xl text-center'>
               My Blog
             </h1>
-            <div className='text-2xl text-center'>
-              Last Post
-            </div>
             {posts.map((frontMatter) => {
               return (
                 <Link href={`/blog/${frontMatter.slug}`} passHref key={frontMatter.title} >
