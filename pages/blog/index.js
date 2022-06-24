@@ -21,20 +21,20 @@ export default function BlogPage({ posts }) {
         <link rel="icon" href="/favicon.png" />
         <meta name='description' content='Mi blog sobre desarrollo web y mis hobbies.'></meta>
       </Head>
-      <div className='container mx-auto flex justify-center flex-wrap'>
+      <div className='container mx-auto flex justify-center flex-wrap '>
         <div className="top w-full flex">
           <Colibri />
           <Header/>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-8">
           <div className='w-full lg:w-9/12 '>
-            <h1 className='text-4xl text-center'>
+            <h1 className='text-4xl text-center mb-8'>
               My Blog
             </h1>
             {posts.map((frontMatter) => {
               return (
                 <Link href={`/blog/${frontMatter.slug}`} passHref key={frontMatter.title} >
-                  <div className='p-4 shadow-lg mb-4 cursor-pointer '>
+                  <div className='p-4 shadow-md  mb-6 cursor-pointer '>
                     
                     <div className="flex ">
                       <div className='img_list_blog w-5/12'>

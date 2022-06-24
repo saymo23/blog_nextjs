@@ -31,19 +31,19 @@ export default function Blog({ post: { source, frontmatter } }) {
         <meta name='description' content={frontmatter.excerpt}></meta>
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <div className='container mx-auto flex justify-center flex-wrap'>
-        <div className="top w-full flex">
+      <div className='container mx-auto flex justify-center flex-wrap gap-12'>
+        <div className="top w-full flex sticky top-0 z-10 bg-white">
           <Colibri />
           <Header />
         </div>
         <div className="flex gap-4">
           <div className='w-full lg:w-9/12 '>
-            <h1 className="article-title text-3xl">{frontmatter.title}</h1>
-            <p className="publish-date mb-6">
+            <h1 className="article-title text-5xl mb-6">{frontmatter.title}</h1>
+            <p className="publish-date mb-6 text-lg">
               {dayjs(frontmatter.publishedAt).format('MMMM D, YYYY')} &mdash;{' '}
               {frontmatter.readingTime}
             </p>
-            <div className="content">
+            <div className="content text-lg">
               <MDXRemote {...source} components={{ Image, CH }} />
             </div>
           </div>

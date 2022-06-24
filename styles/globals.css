@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (min-width: 1536px){
+  .container{
+    max-width: 1280px;
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -31,9 +37,10 @@ a {
   align-items: center;
 }
 .img_list_blog img{
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   height: 230px;
+  width: 100%;
 }
 header > nav > li{
   margin-right: 3rem;
