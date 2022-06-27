@@ -6,6 +6,8 @@ import Link from "next/link"
 
 import styles from '../styles/Home.module.css'
 
+import Script from 'next/script';
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -13,8 +15,10 @@ export default function Home() {
         <title>Create Next App</title>
         <meta name="description" content="Daniel Santarriaga - Portafolio" />
         <link rel="icon" href="/favicon.png" />
+        
       </Head>
-
+<Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7985299248027798"
+     crossorigin="anonymous"></Script>
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
